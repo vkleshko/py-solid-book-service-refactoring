@@ -23,7 +23,9 @@ def main(book: Book, commands: list[tuple[str, str]]) -> None | str:
     for cmd, method_type in commands:
         try:
             task = BOOK_MANAGER[cmd][method_type]
-            return task(book)
+            result = task(book)
+            if cmd == "serialize":
+                return result
         except ValueError as error:
             print(error)
 
